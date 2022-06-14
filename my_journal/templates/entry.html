@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry Detail</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Inter:wght@400;600;700&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        {% if current_entry.title %}
+        <h1>{{current_entry.title}} from {{current_entry.created_at}}</h1>
+        {% else %}
+        <h1>Entry from {{current_entry.created_at}}</h1>
+        {% endif %}
+        <nav>
+            <a href="/logout">Logout</a>
+            <a href="/my_entries/{{current_user.id}}">Back to Your Entries</a>
+            <a href="/landing">Back to Journal Entry</a>
+            <a href="/delete/{{current_entry.id}}">Delete this entry</a>
+        </nav>
+        <div id="edit_entry">
+            <form action="/edit_journal_entry/{{current_entry.id}}" method="POST">
+                {% csrf_token %}
+                <label for="edit_text">You may edit entry by making changes below and clicking "Edit Entry"</label>
+                <textarea name="entry_text" id="edit_text" cols="20" rows="20">{{current_entry.entry_text}}</textarea>
+                <label for="entry_title">Type an optional title for this journal entry here:</label>
+                <input class="journal_title_input" type="text" name="entry_title" id="entry_title" {% if current_entry.title %} 
+                value="{{current_entry.title}}" {% endif %}>
+                <input class="submit_text_btn" type="submit" value="Edit Entry">
+            </form>
+        </div>
+    </main>
+</body>
+</html>

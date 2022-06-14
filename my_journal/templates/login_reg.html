@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register or Log in</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Inter:wght@400;600;700&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1>Welcome to My Journal</h1>
+        <h2>Register or Log in to create a journal entry or view previous entries</h2>
+        <div id="login-reg-wrapper">
+            <div id="register">
+                <h3>Register</h3>
+                <form action="register" method="post">
+                    {% csrf_token %}
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" id="last_name">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                    <label for="password_confirm">Confirm Password</label>
+                    <input type="password" id="password_confirm" name="password_confirm">
+                    <input type="submit" value="Register" class="submit">
+                </form>
+            </div>
+            <div id="errors">
+                {% if messages %}
+                    <ul class="messages">    
+                        {% for message in messages %}    
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div id="login">
+                <h3>Login</h3>
+                <form action="login" method="post">
+                    {% csrf_token %}
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                    <input type="submit" value="Log In" class="submit">
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

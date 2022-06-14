@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Inter:wght@400;600;700&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        {% if current_entry.title %}
+        <h1>Are you sure you want to delete "{{current_entry.title}}"?</h1>
+        {% else %}
+        <h1>Are you sure you want to delete entry from {{current_entry.created_at}}?</h1>
+        {% endif %}
+        <nav>
+            <a href="/logout">Logout</a>
+            <a id="delete_button" href="/delete_entry/{{current_entry.id}}">Yes, Delete This Entry</a>
+            <a href="/my_entries/{{current_user.id}}">Back to Your Entries</a>
+            <a href="/view_entry/{{current_entry.id}}">Back to Entry Detail</a>
+        </nav>
+        <p id="entry_display">{{current_entry.entry_text}}</p>
+    </main>
+</body>
+</html>

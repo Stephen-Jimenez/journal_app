@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/* applied to entire app */
+body {
+    padding-top: 30px;
+    background-color: skyblue;
+}
+
+main {
+    width: 1200px;
+    height: 600px;
+    background-image: url("/static/clouds.jpg");
+    filter: brightness(125%);
+    background-size: cover;
+    background-color: skyblue;
+    margin: 0 auto;
+    color: #a2151c;
+    font-weight: 900;
+    text-align: center;
+    padding: 1px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+main a {
+    color: black;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+main h1, main h2 {
+    margin: 15px 0;
+}
+
+/* end of styling applied to entire app */
+
+/* login-reg styling */
+
+#login-reg-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+#login-reg-wrapper h3 {
+    margin: 30px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+}
+
+#register form input, #register form label, #login form input, #login form label {
+    width: 300px;
+    height: 25px;
+}
+
+.submit {
+    margin-top: 20px;
+    border-radius: 10px;
+    color: #a2151c;
+}
+
+#errors {
+    color: red;
+
+}
+
+#errors ul li {
+    list-style: none;
+}
+
+/* end of login-reg styling */
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#create_entry, #edit_entry {
+    margin: 40px 40px;
+}
+
+#create_entry .submit_text_btn, #edit_entry .submit_text_btn {
+    background-color: #7070ff;
+    color: #a2151c;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    width: 300px;
+    height: 25px;
+    display: block;
+    margin: 0 auto;
+}
+
+textarea {
+    background-color: #87cefa; 
+}
+
+#entries {
+    margin-top: 25px;
+}
+
+#entries p {
+    margin-bottom: 10px;
+}
+
+#delete_button {
+    color: green;
+}
+
+#entry_display {
+    color: black;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.journal_title_input {
+    background-color: #87cefa;
+    margin-bottom: 15px;
+}
+
+#edit_user_info_form {
+    margin-top: 30px;
+}
+
+#edit_user_info_form input{
+    width: 300px;
+    height: 25px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #87cefa;
+}
+
+#edit_user_info_form .submit {
+    margin-top: 15px;
+}

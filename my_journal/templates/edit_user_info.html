@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a new entry</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Inter:wght@400;600;700&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1>Welcome {{current_user}}</h1>
+        <nav>
+            <a href="/logout">Logout</a>
+            <a href="/my_entries/{{current_user.id}}">Your Entries</a>
+            <a href="/landing">Back to Journal Entry</a>
+        </nav>
+        <div id="edit_user_info_form">
+            <h2>You may edit by making changes below and clicking "Submit Changes"</h2>
+            <form action="/edit_user_info_complete/{{current_user.id}}" method="POST">
+                {% csrf_token %}
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" value="{{current_user.first_name}}">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" value="{{current_user.last_name}}">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" value="{{current_user.email}}">
+                <input type="submit" value="Submit Changes" class="submit">
+            </form>
+        </div>
+        <div id="errors">
+            {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+            {% endif %}
+         </div>
+    </main>
+</body>
+</html>
